@@ -67,21 +67,24 @@
     const lyrCSMap = L.tileLayer("https://www2.ffpri.go.jp/soilmap/tile/cs_hiroshima/{z}/{x}/{y}.png", {
       attribution: "<a href='森林総合研究所",
       minZoom: 12,
-      maxZoom: 16
+      maxZoom: 17
     });
+
+    // 陰影起伏図（地形の陰影）
+    const gsiHillshade = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/hillshademap/{z}/{x}/{y}.png', {
+      maxZoom: 16, opacity: 0.7, attribution: '地理院タイル（陰影起伏図）'
+    });
+
 
     // ベースマップのグループを定義
     const baseMaps = {
+      "陰影起伏図（重ねがけ）": gsiHillshade,
       "地理院地図": lyrGSI,
       "Google高解像度（災害後）": lyrGoogleHybrid,
       "CS立体図": lyrCSMap
     };
 
     // ==== オーバーレイ（重ねると表現が変わって面白い） ====
-    // 陰影起伏図（地形の陰影）
-    const gsiHillshade = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/hillshademap/{z}/{x}/{y}.png', {
-      maxZoom: 16, opacity: 0.7, attribution: '地理院タイル（陰影起伏図）'
-    });
 
     // ==== オーバーレイ（重ねると表現が変わって面白い） ====
     // 1970年代の写真
@@ -133,7 +136,6 @@
 
     // オーバーレイのグループを定義
     const overlays = {
-      "陰影起伏図（重ねがけ）": gsiHillshade,
       "1970年代写真": ort1970th,
       "地理院写真（7月15日）": gsi_ort_kure_180715,
       "崩壊主部・林野庁": jsonHoukai,
