@@ -85,17 +85,40 @@
     };
 
     // ==== オーバーレイ（重ねると表現が変わって面白い） ====
+    // 1960年代の写真
+    const ort1960th = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/ort_old10/{z}/{x}/{y}.png', {
+      maxZoom: 18, opacity: 1, attribution: '地理院タイル（1970年代写真）'
+    });
 
-    // ==== オーバーレイ（重ねると表現が変わって面白い） ====
     // 1970年代の写真
     const ort1970th = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/gazo1/{z}/{x}/{y}.jpg', {
-      maxZoom: 16, opacity: 1, attribution: '地理院タイル（1970年代写真）'
+      maxZoom: 18, opacity: 1, attribution: '地理院タイル（1970年代写真）'
     });
 
     // 国土地理院オルソ（呉東部7月15日撮影）
     const gsi_ort_kure_180715 = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/201807H3007gouu_kuretoubu_0715do/{z}/{x}/{y}.png', {
-      maxZoom: 16, opacity: 1, attribution: '地理院タイル'
+      maxZoom: 18, opacity: 1, attribution: '地理院タイル'
     });
+
+    // 国土地理院オルソ（東広島地区）
+    const gsi_ort_higashihiroshima = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/201807H3007gouu_higashihiroshima_0710do/{z}/{x}/{y}.png', {
+      maxZoom: 18, opacity: 1, attribution: '地理院タイル'
+    });    
+
+    // 迅速図・竹原
+    const jinsoku_takehara = L.tileLayer('https://mapwarper.h-gis.jp/maps/tile/687/{z}/{x}/{y}.png', {
+      maxZoom: 18, opacity: 1, attribution: '地日本版Map Warper'
+    });
+    
+    // 迅速図・海田
+    const jinsoku_kaida = L.tileLayer('https://mapwarper.h-gis.jp/maps/tile/686/{z}/{x}/{y}.png', {
+      maxZoom: 18, opacity: 1, attribution: '地日本版Map Warper'
+    });  
+
+    // 迅速図・呉
+    const jinsoku_kure = L.tileLayer('https://mapwarper.h-gis.jp/maps/tile/668/{z}/{x}/{y}.png', {
+      maxZoom: 18, opacity: 1, attribution: '地日本版Map Warper'
+    });  
 
     // 注記（地名ラベル）— 航空写真や色別標高図の上に重ねると便利
     const gsiLabel = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/label/{z}/{x}/{y}.png', {
@@ -136,8 +159,13 @@
 
     // オーバーレイのグループを定義
     const overlays = {
+      "1960年代写真": ort1960th,
       "1970年代写真": ort1970th,
-      "地理院写真（7月15日）": gsi_ort_kure_180715,
+      "地理院呉東部": gsi_ort_kure_180715,
+      "地理院東広島": gsi_ort_higashihiroshima,
+      "迅速図・竹原": jinsoku_takehara,
+      "迅速図・海田": jinsoku_kaida,
+      "迅速図・呉": jinsoku_kure,
       "崩壊主部・林野庁": jsonHoukai,
       "流下部・林野庁": jsonFlow,
       "注記（地名ラベル）": gsiLabel
